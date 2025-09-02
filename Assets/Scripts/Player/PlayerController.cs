@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Move.performed += Move;
         inputActions.Player.Move.canceled += Move;
         inputActions.Player.Jump.performed += Jump;
+        inputActions.Player.Dash.performed += Dash;
 
         player = new Player(3, true);
     }
@@ -43,10 +44,7 @@ public class PlayerController : MonoBehaviour
 
         playerMovement.CoyoteTimeCounter(groundDetector.IsGround());
 
-        if (!groundDetector.IsGround())
-        {
-            playerMovement.JumpBufferCounter(inputActions.Player.Jump.triggered);
-        }           
+        playerMovement.DashHandle();
     }
 
     private void Move(InputAction.CallbackContext context)
@@ -60,6 +58,14 @@ public class PlayerController : MonoBehaviour
         {
             playerMovement.Jump();
         }           
+    }
+
+    private void Dash(InputAction.CallbackContext context)
+    {
+        if (playerMovement.CanDash())
+        {
+            playerMovement.Dash(playerInput);
+        }
     }
 
     private void PlayerInputHandler()
@@ -96,10 +102,13 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.PlayFall();
             playerMovement.FallAccelaration();
+
+            playerMovement.JumpBufferCounter(inputActions.Player.Jump.triggered);
         }    
         else if (groundDetector.IsGround())
         {
             playerMovement.ResetGravity();
+            playerMovement.ResetDash();
         }    
     }    
 

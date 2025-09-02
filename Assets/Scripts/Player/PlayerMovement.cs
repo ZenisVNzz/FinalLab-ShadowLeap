@@ -18,6 +18,17 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     private float jumpBufferCounter;
     private float coyoteTimeCounter;
 
+    [Header("Dash Settings")]
+    [SerializeField] private float dashSpeed = 15f;
+    [SerializeField] private float dashTime = 0.2f;
+    [SerializeField] private int dashCountMax = 2;
+
+    private int dashCount;
+    private bool isDashing;
+    private float dashTimeCounter;
+    private Vector2 dashDirection;
+    
+
     private Rigidbody2D rb;
 
     private void Awake()
@@ -74,6 +85,47 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     public void FallAccelaration()
     {
         rb.gravityScale += fallAcceleration * Time.deltaTime;
+    }
+
+    public bool CanDash()
+    {
+        return dashCount < dashCountMax && !isDashing;
+    }
+
+    public void Dash(Vector2 input)
+    {
+        isDashing = true;
+        dashCount++;
+        dashTimeCounter = dashTime;
+        dashDirection = input.normalized;
+        if (dashDirection == Vector2.zero)
+        {
+            dashDirection = new Vector2(transform.localScale.x, 0);
+        }
+        rb.gravityScale = 0;
+        rb.linearVelocity = dashDirection * dashSpeed;
+    }
+
+    public void DashHandle()
+    {
+        if (isDashing)
+        {
+            if (dashTimeCounter > 0)
+            {
+                rb.linearVelocity = dashDirection * dashSpeed;
+                dashTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                isDashing = false;
+                ResetGravity();
+            }
+        }
+    }
+
+    public void ResetDash()
+    {
+        dashCount = 0;
     }
 
     public void ResetGravity()

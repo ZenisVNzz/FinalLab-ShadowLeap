@@ -21,6 +21,11 @@ public class PlayerAnimation : MonoBehaviour, IPlayerAnimator
         animator.Play("Player_Move");
     }
 
+    public void PlayDash()
+    {
+        animator.Play("Player_Dash");
+    }
+
     public void PlayJump()
     {
         animator.Play("Player_Jump");

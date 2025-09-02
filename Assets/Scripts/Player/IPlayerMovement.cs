@@ -1,5 +1,5 @@
 using UnityEngine;
 
-public interface IPlayerMovement : IMovable, IJumpable
+public interface IPlayerMovement : IMovable, IJumpable, IDashable
 {
 }
