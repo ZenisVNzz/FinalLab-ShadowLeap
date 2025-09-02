@@ -4886,6 +4886,7 @@ GameObject:
   - component: {fileID: 1127747937}
   - component: {fileID: 1127747940}
   - component: {fileID: 1127747939}
+  - component: {fileID: 1127747941}
   - component: {fileID: 1127747938}
   m_Layer: 0
   m_Name: Player
@@ -4920,7 +4921,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &1127747935
 Animator:
   serializedVersion: 7
@@ -4996,10 +4997,10 @@ BoxCollider2D:
   m_Offset: {x: -7.1923714, y: -3.4208982}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.75, y: 1.3125}
+    newSize: {x: 1.75, y: 1.3125}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -5037,6 +5038,9 @@ MonoBehaviour:
   moveSpeed: 5
   acceleration: 15
   deceleration: 20
+  jumpForce: 12
+  gravity: 3
+  fallAcceleration: 2.5
 --- !u!114 &1127747940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5047,6 +5051,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef5ffe945b834b34c8236325fbf4ad9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1127747941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127747933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5be97642125cb4ea7024f5b3265198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
