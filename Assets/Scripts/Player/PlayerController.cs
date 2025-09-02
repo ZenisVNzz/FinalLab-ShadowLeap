@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
 
     private Player player;
 
+    private SquashAndStretch squashAndStretch;
+    private bool wasGrounded;
+
     private void Awake()
     {
         playerMovement = GetComponent<IPlayerMovement>();
@@ -28,6 +31,8 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Dash.performed += Dash;
 
         player = new Player(3, true);
+
+        squashAndStretch = GetComponentInChildren<SquashAndStretch>();
     }
 
     private void FixedUpdate()
@@ -57,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if (playerMovement.CanJump() || groundDetector.IsGround())
         {
             playerMovement.Jump();
+            squashAndStretch.OnJump();
         }           
     }
 
@@ -109,7 +115,14 @@ public class PlayerController : MonoBehaviour
         {
             playerMovement.ResetGravity();
             playerMovement.ResetDash();
-        }    
+
+            if (!wasGrounded)
+            {
+                squashAndStretch.OnLand();
+            }                 
+        }
+
+        wasGrounded = groundDetector.IsGround();
     }    
 
     private void StandHandle()

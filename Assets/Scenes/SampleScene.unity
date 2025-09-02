@@ -5309,6 +5309,9 @@ MonoBehaviour:
   fallAcceleration: 10
   jumpBuffertime: 0.1
   coyoteTime: 0.1
+  dashSpeed: 14
+  dashTime: 0.15
+  dashCountMax: 2
 --- !u!114 &1127747940
 MonoBehaviour:
   m_ObjectHideFlags: 0
