@@ -12,6 +12,11 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float gravity = 1f;
     [SerializeField] private float fallAcceleration = 2.5f;
+    [SerializeField] private float jumpBuffertime = 0.1f;
+    [SerializeField] private float coyoteTime = 0.1f;
+
+    private float jumpBufferCounter;
+    private float coyoteTimeCounter;
 
     private Rigidbody2D rb;
 
@@ -27,7 +32,43 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
 
     public void Jump()
     {
+        ResetGravity();
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        jumpBufferCounter = 0;
+    }
+
+    public bool CanJump()
+    {
+        return coyoteTimeCounter > 0;
+    }
+
+    public void JumpBufferCounter(bool isJump)
+    {
+        if (isJump)
+        {
+            jumpBufferCounter = jumpBuffertime;
+        }
+        else if (jumpBufferCounter > 0)
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+    }
+
+    public void CoyoteTimeCounter(bool isGrounded)
+    {
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else if (coyoteTimeCounter > 0)
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
+        {
+            Jump();
+        }
     }
 
     public void FallAccelaration()

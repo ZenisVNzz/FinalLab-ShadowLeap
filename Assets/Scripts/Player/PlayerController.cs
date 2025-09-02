@@ -40,6 +40,13 @@ public class PlayerController : MonoBehaviour
         JumpHandle();
         FallHandle();
         StandHandle();
+
+        playerMovement.CoyoteTimeCounter(groundDetector.IsGround());
+
+        if (!groundDetector.IsGround())
+        {
+            playerMovement.JumpBufferCounter(inputActions.Player.Jump.triggered);
+        }           
     }
 
     private void Move(InputAction.CallbackContext context)
@@ -49,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (groundDetector.IsGround())
+        if (playerMovement.CanJump() || groundDetector.IsGround())
         {
             playerMovement.Jump();
         }           
