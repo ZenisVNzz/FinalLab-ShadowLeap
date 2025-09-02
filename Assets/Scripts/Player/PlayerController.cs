@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private IMovable playerMovement;
+    private IPlayerAnimator playerAnimator;
     private IGroundDetector groundDetector;
 
     private InputSystem_Actions inputActions;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         playerMovement = GetComponent<IMovable>();
         groundDetector = GetComponent<IGroundDetector>();
+        playerAnimator = GetComponent<IPlayerAnimator>();
 
         inputActions = new InputSystem_Actions();
         inputActions.Player.Enable();
@@ -28,10 +30,29 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         playerMovement.Move(playerInput);
+        PlayerInputHandler();
     }
 
     private void Move(InputAction.CallbackContext context)
     {
         playerInput = context.ReadValue<Vector2>();
     }    
+
+    private void PlayerInputHandler()
+    {
+        if (playerInput.x > 0)
+        {
+            playerAnimator.Flip(false);
+            playerAnimator.PlayMove();
+        }
+        else if (playerInput.x < 0)
+        {
+            playerAnimator.Flip(true);
+            playerAnimator.PlayMove();
+        }
+        else
+        {
+            playerAnimator.PlayIdle();
+        }
+    }
 }
