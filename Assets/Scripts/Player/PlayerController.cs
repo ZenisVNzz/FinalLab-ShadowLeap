@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerMovement = GetComponent<IPlayerMovement>();
-        groundDetector = GetComponent<IGroundDetector>();
+        groundDetector = GetComponentInChildren<IGroundDetector>();
         playerAnimator = GetComponent<IPlayerAnimator>();
 
         inputActions = new InputSystem_Actions();
@@ -49,20 +49,29 @@ public class PlayerController : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        playerMovement.Jump();
+        if (groundDetector.IsGround())
+        {
+            playerMovement.Jump();
+        }           
     }
 
     private void PlayerInputHandler()
     {
         if (playerInput.x > 0)
         {
-            playerAnimator.Flip(false);
-            playerAnimator.PlayMove();
+            playerAnimator.Flip(false);   
+            if (groundDetector.IsGround())
+            {
+                playerAnimator.PlayMove();
+            }
         }
         else if (playerInput.x < 0)
         {
             playerAnimator.Flip(true);
-            playerAnimator.PlayMove();
+            if (groundDetector.IsGround())
+            {
+                playerAnimator.PlayMove();
+            }
         }
     }
 
@@ -81,7 +90,7 @@ public class PlayerController : MonoBehaviour
             playerAnimator.PlayFall();
             playerMovement.FallAccelaration();
         }    
-        else if (playerMovement.GetVelocity().y == 0)
+        else if (groundDetector.IsGround())
         {
             playerMovement.ResetGravity();
         }    
@@ -89,7 +98,7 @@ public class PlayerController : MonoBehaviour
 
     private void StandHandle()
     {
-        if (playerMovement.GetVelocity() == Vector2.zero)
+        if (playerInput.sqrMagnitude < 0.01f && groundDetector.IsGround())
         {
             playerAnimator.PlayIdle();
         }
