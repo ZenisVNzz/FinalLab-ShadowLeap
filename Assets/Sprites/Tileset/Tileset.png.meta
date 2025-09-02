@@ -169,8 +169,8 @@ TextureImporter:
       name: Tileset_3
       rect:
         serializedVersion: 2
-        x: 16
-        y: 112
+        x: 80
+        y: 128
         width: 16
         height: 16
       alignment: 0
@@ -191,8 +191,8 @@ TextureImporter:
       name: Tileset_4
       rect:
         serializedVersion: 2
-        x: 32
-        y: 112
+        x: 96
+        y: 128
         width: 16
         height: 16
       alignment: 0
@@ -213,7 +213,7 @@ TextureImporter:
       name: Tileset_5
       rect:
         serializedVersion: 2
-        x: 48
+        x: 16
         y: 112
         width: 16
         height: 16
@@ -235,8 +235,8 @@ TextureImporter:
       name: Tileset_6
       rect:
         serializedVersion: 2
-        x: 16
-        y: 96
+        x: 32
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -257,8 +257,8 @@ TextureImporter:
       name: Tileset_7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
+        x: 48
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -279,8 +279,8 @@ TextureImporter:
       name: Tileset_8
       rect:
         serializedVersion: 2
-        x: 48
-        y: 96
+        x: 80
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -293,6 +293,94 @@ TextureImporter:
       bones: []
       spriteID: 98e417a79d5c67b4686645fa1773e0fa
       internalID: 1112620931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tileset_9
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15005581c336c524abe308d28113e53f
+      internalID: -1048395341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tileset_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6887134f3486e54448a65cf2c3feae75
+      internalID: 1008189429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tileset_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14836236c2945bd46b8253486527040b
+      internalID: 1876614217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tileset_12
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f66cecb69c680394eb4ed20f6a21f92f
+      internalID: -1098388982
       vertices: []
       indices: 
       edges: []
@@ -311,10 +399,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Tileset_0: 5441223297315994465
       Tileset_1: -143330440
+      Tileset_10: 1008189429
+      Tileset_11: 1876614217
+      Tileset_12: -1098388982
       Tileset_2: 1011416905
       Tileset_3: 537732571
       Tileset_4: -999090488
@@ -322,6 +413,7 @@ TextureImporter:
       Tileset_6: 1421948327
       Tileset_7: -1058899861
       Tileset_8: 1112620931
+      Tileset_9: -1048395341
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
