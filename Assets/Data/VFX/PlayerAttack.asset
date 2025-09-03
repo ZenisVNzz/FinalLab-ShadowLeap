@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87ed700c3b43b414097167a26dc21121, type: 3}
-  m_Name: VFXList
+  m_Script: {fileID: 11500000, guid: f3a6cf25f30b79c47bfc7d700ed7bad4, type: 3}
+  m_Name: PlayerAttack
   m_EditorClassIdentifier: 
-  vfxList:
-  - {fileID: 11400000, guid: 19b6be99180dee5439a3796a4aec9a9a, type: 2}
+  prefab: {fileID: 8622717820810064252, guid: 072fa69341fb3a04da2bd6d1fb063710, type: 3}
+  id: 100002
+  autoDestroy: 1

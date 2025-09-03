@@ -5107,7 +5107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 5946643090234269705, guid: 4253c21acbf516e44a9dc6ba4760f47d, type: 3}
-  spawnInterval: 0.1
+  spawnInterval: 0.15
 --- !u!1 &1072817062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5270,6 +5270,7 @@ GameObject:
   - component: {fileID: 1127747937}
   - component: {fileID: 1127747940}
   - component: {fileID: 1127747939}
+  - component: {fileID: 1127747943}
   - component: {fileID: 1127747941}
   - component: {fileID: 1127747942}
   m_Layer: 0
@@ -5337,7 +5338,7 @@ Transform:
   m_GameObject: {fileID: 1127747933}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.96, y: 12.98, z: 0}
+  m_LocalPosition: {x: 9.96, y: 12.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5383,8 +5384,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.75, y: 1.3125}
-    newSize: {x: 1.75, y: 1.3125}
+    oldSize: {x: 9, y: 9}
+    newSize: {x: 9, y: 9}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -5491,6 +5492,19 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: -0.07, y: -0.07, z: 0}
+--- !u!114 &1127747943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127747933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb97a360f2fca343baf61c3b8114689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolddownTime: 0.5
 --- !u!1 &1139550756
 GameObject:
   m_ObjectHideFlags: 0

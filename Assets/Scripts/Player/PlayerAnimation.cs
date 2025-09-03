@@ -36,6 +36,11 @@ public class PlayerAnimation : MonoBehaviour, IPlayerAnimator
         animator.Play("Player_Fall");
     }
 
+    public void PlayAttack()
+    {
+        animator.Play("Player_Attack");
+    }
+
     public void Flip(bool x)
     {
         spriteRenderer.flipX = x;

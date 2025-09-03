@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private IPlayerMovement playerMovement;
     private IPlayerAnimator playerAnimator;
     private IGroundDetector groundDetector;
+    private IPlayerAttack playerAttack;
 
     private InputSystem_Actions inputActions;
     private Vector2 playerInput;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         playerMovement = GetComponent<IPlayerMovement>();
         groundDetector = GetComponentInChildren<IGroundDetector>();
         playerAnimator = GetComponent<IPlayerAnimator>();
+        playerAttack = GetComponent<IPlayerAttack>();
 
         inputActions = new InputSystem_Actions();
         inputActions.Player.Enable();
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Move.canceled += Move;
         inputActions.Player.Jump.performed += Jump;
         inputActions.Player.Dash.performed += Dash;
+        inputActions.Player.Attack.performed += Attack;
 
         player = new Player(3, true);
 
@@ -76,12 +79,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Attack(InputAction.CallbackContext context)
+    {
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        playerAttack.Attack(mousePos);
+        playerAnimator.PlayAttack();
+    }
+
     private void PlayerInputHandler()
     {
         if (playerInput.x > 0)
         {
             playerAnimator.Flip(false);   
-            if (groundDetector.IsGround())
+            if (groundDetector.IsGround() && !playerAttack.IsAttacking())
             {
                 playerAnimator.PlayMove();
             }
@@ -89,7 +99,7 @@ public class PlayerController : MonoBehaviour
         else if (playerInput.x < 0)
         {
             playerAnimator.Flip(true);
-            if (groundDetector.IsGround())
+            if (groundDetector.IsGround() && !playerAttack.IsAttacking())
             {
                 playerAnimator.PlayMove();
             }
@@ -98,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
     private void JumpHandle()
     {
-        if (playerMovement.GetVelocity().y > 0.1f)
+        if (playerMovement.GetVelocity().y > 0.1f && !playerAttack.IsAttacking())
         {
             playerAnimator.PlayJump();
         }
@@ -106,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     private void FallHandle()
     {
-        if (playerMovement.GetVelocity().y < -0.1f)
+        if (playerMovement.GetVelocity().y < -0.1f && !playerAttack.IsAttacking())
         {
             playerAnimator.PlayFall();
             playerMovement.FallAccelaration();
@@ -131,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     private void StandHandle()
     {
-        if (playerInput.sqrMagnitude < 0.01f && groundDetector.IsGround())
+        if (playerInput.sqrMagnitude < 0.01f && groundDetector.IsGround() && !playerAttack.IsAttacking())
         {
             playerAnimator.PlayIdle();
         }
