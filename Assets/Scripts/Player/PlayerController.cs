@@ -1,6 +1,4 @@
 using Unity.Cinemachine;
-using Unity.Jobs;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -114,6 +112,7 @@ public class PlayerController : MonoBehaviour
             playerMovement.FallAccelaration();
 
             playerMovement.JumpBufferCounter(inputActions.Player.Jump.triggered);
+            wasGrounded = false;
         }    
         else if (groundDetector.IsGround())
         {
@@ -125,10 +124,9 @@ public class PlayerController : MonoBehaviour
                 squashAndStretch.OnLand();
                 Transform ground = transform.GetChild(1).transform;
                 VFXManager.Instance.Initialize(100001, new Vector2(ground.position.x, ground.position.y + 0.2f));
+                wasGrounded = true;
             }                 
         }
-
-        wasGrounded = groundDetector.IsGround();
     }    
 
     private void StandHandle()

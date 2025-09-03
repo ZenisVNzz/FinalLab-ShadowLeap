@@ -23,6 +23,7 @@ public class GhostTrail : MonoBehaviour
             Animator animator = gameObject.GetComponent<Animator>();
             Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
             sr.sprite = spriteRenderer.sprite;
+            sr.flipX = spriteRenderer.flipX;
             yield return new WaitForSeconds(spawnInterval);
         }
     }

@@ -102,7 +102,8 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         dashDirection = input.normalized;
         if (dashDirection == Vector2.zero)
         {
-            dashDirection = new Vector2(transform.localScale.x, 0);
+            float facing = GetComponentInChildren<SpriteRenderer>().flipX ? -1f : 1f;
+            dashDirection = new Vector2(facing, 0);
         }
         rb.gravityScale = 0;
         rb.linearVelocity = dashDirection * dashSpeed;
