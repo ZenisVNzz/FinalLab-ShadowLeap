@@ -123,6 +123,8 @@ public class PlayerController : MonoBehaviour
             if (!wasGrounded)
             {
                 squashAndStretch.OnLand();
+                Transform ground = transform.GetChild(1).transform;
+                VFXManager.Instance.Initialize(100001, new Vector2(ground.position.x, ground.position.y + 0.2f));
             }                 
         }
 

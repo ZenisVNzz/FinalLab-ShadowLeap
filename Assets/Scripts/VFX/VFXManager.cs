@@ -4,7 +4,7 @@ using UnityEngine;
 public class VFXManager : MonoBehaviour
 {
     public static VFXManager Instance;
-    private VFXList VFXList;
+    [SerializeField] private VFXList VFXList;
     private Dictionary<int, GameObject> activeVFX = new Dictionary<int, GameObject>();
 
     private void Awake()
