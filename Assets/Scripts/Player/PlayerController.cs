@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.PlayJump();
         }
-    }    
+    }       
 
     private void FallHandle()
     {
