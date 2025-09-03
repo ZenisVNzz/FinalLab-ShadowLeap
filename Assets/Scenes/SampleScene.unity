@@ -4955,6 +4955,8 @@ GameObject:
   m_Component:
   - component: {fileID: 827728553}
   - component: {fileID: 827728554}
+  - component: {fileID: 827728555}
+  - component: {fileID: 827728556}
   m_Layer: 0
   m_Name: Sprites
   m_TagString: Untagged
@@ -5032,6 +5034,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &827728555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827728552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32da2853a4876364b8f2df9d2b8f0922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squashAmount: 0.2
+  stretchAmount: 0.25
+  duration: 0.05
+--- !u!114 &827728556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827728552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26789a6d3a3478b47b3f6aca05dcdeff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5946643090234269705, guid: 4253c21acbf516e44a9dc6ba4760f47d, type: 3}
+  spawnInterval: 0.1
 --- !u!1 &1072817062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5090,6 +5121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1121856335}
   - component: {fileID: 1121856334}
+  - component: {fileID: 1121856336}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -5155,6 +5187,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1121856336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121856333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1127747933
 GameObject:
   m_ObjectHideFlags: 0
@@ -5170,6 +5226,7 @@ GameObject:
   - component: {fileID: 1127747940}
   - component: {fileID: 1127747939}
   - component: {fileID: 1127747941}
+  - component: {fileID: 1127747942}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5235,7 +5292,7 @@ Transform:
   m_GameObject: {fileID: 1127747933}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.97, y: 12.977, z: 0}
+  m_LocalPosition: {x: 9.96, y: 12.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5309,8 +5366,8 @@ MonoBehaviour:
   fallAcceleration: 10
   jumpBuffertime: 0.1
   coyoteTime: 0.1
-  dashSpeed: 14
-  dashTime: 0.15
+  dashSpeed: 15
+  dashTime: 0.13
   dashCountMax: 2
 --- !u!114 &1127747940
 MonoBehaviour:
@@ -5336,6 +5393,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5be97642125cb4ea7024f5b3265198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1127747942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127747933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 2
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: -0.07, y: -0.07, z: 0}
 --- !u!1 &1139550756
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using Unity.Jobs;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private Player player;
 
     private SquashAndStretch squashAndStretch;
+    private CinemachineImpulseSource impulseSource;
     private bool wasGrounded;
 
     private void Awake()
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
         player = new Player(3, true);
 
         squashAndStretch = GetComponentInChildren<SquashAndStretch>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void FixedUpdate()
@@ -71,6 +74,7 @@ public class PlayerController : MonoBehaviour
         if (playerMovement.CanDash())
         {
             playerMovement.Dash(playerInput);
+            impulseSource.GenerateImpulse();
         }
     }
 

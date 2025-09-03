@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     [SerializeField] private float dashTime = 0.2f;
     [SerializeField] private int dashCountMax = 2;
 
+    private GhostTrail ghostTrail;
     private int dashCount;
     private bool isDashing;
     private float dashTimeCounter;
@@ -33,7 +34,8 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();      
+        rb = GetComponent<Rigidbody2D>();
+        ghostTrail = GetComponentInChildren<GhostTrail>();
     }
 
     public void Move(Vector2 input)
@@ -104,6 +106,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         }
         rb.gravityScale = 0;
         rb.linearVelocity = dashDirection * dashSpeed;
+        ghostTrail.StartTrail();
     }
 
     public void DashHandle()
@@ -116,8 +119,9 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
                 dashTimeCounter -= Time.deltaTime;
             }
             else
-            {
+            {    
                 isDashing = false;
+                ghostTrail.StopTrail();
                 ResetGravity();
             }
         }
