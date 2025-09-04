@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public interface IPlayerAttack : IDamageDealer
+public interface IPlayerAttack
 {
+    void Attack();
     bool IsAttacking();
 }

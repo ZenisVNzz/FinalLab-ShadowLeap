@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class Spike : MonoBehaviour
+public class Spike : MonoBehaviour, IDamageDealer
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        IAttackable attackable = collision.gameObject.GetComponent<IAttackable>();
+        if (attackable != null)
+        {
+            Attack(attackable);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Attack(IAttackable target)
     {
-        
+        target.TakeDamage(1);
     }
 }

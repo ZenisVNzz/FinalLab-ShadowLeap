@@ -271,6 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7956432124719831368}
   - component: {fileID: 495042784958664255}
+  - component: {fileID: 8163941204523475147}
   m_Layer: 0
   m_Name: GroupSpike
   m_TagString: Untagged
@@ -326,7 +327,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -342,3 +343,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.9975815, y: 0.6783457}
   m_EdgeRadius: 0
+--- !u!114 &8163941204523475147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8250460795426031597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4774adbb2533648a744df005ef0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

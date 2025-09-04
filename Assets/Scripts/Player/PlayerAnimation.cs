@@ -41,6 +41,11 @@ public class PlayerAnimation : MonoBehaviour, IPlayerAnimator
         animator.Play("Player_Attack");
     }
 
+    public void PlayHurt()
+    {
+        animator.Play("Player_Hurt");
+    }
+
     public void PlayDead()
     {
         animator.Play("Player_Death");

@@ -2,7 +2,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IAttackable
 {
     private IPlayerMovement playerMovement;
     private IPlayerAnimator playerAnimator;
@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Dash.performed += Dash;
         inputActions.Player.Attack.performed += Attack;
 
+        EventManager.instance.Register("OnPlayerDead", OnPlayerDeadHandler);
+
         player = new Player(3, true);
 
         squashAndStretch = GetComponentInChildren<SquashAndStretch>();
@@ -54,6 +56,29 @@ public class PlayerController : MonoBehaviour
         playerMovement.CoyoteTimeCounter(groundDetector.IsGround());
 
         playerMovement.DashHandle();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        player.lives -= damage;
+        playerAnimator.PlayHurt();
+        playerMovement.Jump();
+        if (player.lives <= 0)
+        {
+            EventManager.instance.Trigger("OnPlayerDead");
+            Debug.Log("Player Dead");
+        }
+        else
+        {
+            Debug.Log("Player took damage. Remaining lives: " + player.lives);
+        }
+    }
+
+    private void OnPlayerDeadHandler()
+    {
+        playerAnimator.PlayDead();
+        inputActions.Player.Disable();
+        this.enabled = false;
     }
 
     private void Move(InputAction.CallbackContext context)

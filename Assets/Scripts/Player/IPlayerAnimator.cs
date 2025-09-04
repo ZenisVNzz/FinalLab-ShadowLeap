@@ -8,6 +8,7 @@ public interface IPlayerAnimator
     void PlayJump();
     void PlayFall();
     void PlayAttack();
+    void PlayHurt();
     void PlayDead();
     void Flip(bool x);
 }
