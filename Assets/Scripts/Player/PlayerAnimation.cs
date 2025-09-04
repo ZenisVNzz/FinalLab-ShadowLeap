@@ -41,6 +41,11 @@ public class PlayerAnimation : MonoBehaviour, IPlayerAnimator
         animator.Play("Player_Attack");
     }
 
+    public void PlayDead()
+    {
+        animator.Play("Player_Death");
+    }
+
     public void Flip(bool x)
     {
         spriteRenderer.flipX = x;

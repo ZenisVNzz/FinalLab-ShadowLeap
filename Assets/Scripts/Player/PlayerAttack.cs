@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour, IPlayerAttack
 {
@@ -8,10 +9,11 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
 
     private bool isAttacking;
 
-    public void Attack(Vector2 mousePos)
+    public void Attack()
     {
         if (cooldownTimer <= 0)
         {
+            Vector2 mousePos = Mouse.current.position.ReadValue();
             cooldownTimer = coolddownTime;
             isAttacking = true;
             Vector2 playerTransform = transform.GetChild(0).transform.position;

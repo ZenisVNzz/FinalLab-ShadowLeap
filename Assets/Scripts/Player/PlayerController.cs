@@ -80,9 +80,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Attack(InputAction.CallbackContext context)
-    {
-        Vector2 mousePos = Mouse.current.position.ReadValue();
-        playerAttack.Attack(mousePos);
+    {      
+        playerAttack.Attack();
         playerAnimator.PlayAttack();
     }
 
