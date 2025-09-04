@@ -33,12 +33,16 @@ public class PlayerController : MonoBehaviour, IAttackable
         inputActions.Player.Dash.performed += Dash;
         inputActions.Player.Attack.performed += Attack;
 
-        EventManager.instance.Register("OnPlayerDead", OnPlayerDeadHandler);
-
-        player = new Player(3, true);
+        EventManager.instance.Register("OnPlayerDead", OnPlayerDeadHandler);    
 
         squashAndStretch = GetComponentInChildren<SquashAndStretch>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
+
+    private void OnEnable()
+    {
+        player = new Player(3, true);
+        inputActions.Player.Enable();
     }
 
     private void FixedUpdate()
@@ -62,7 +66,6 @@ public class PlayerController : MonoBehaviour, IAttackable
     {
         player.lives -= damage;
         playerAnimator.PlayHurt();
-        playerMovement.Jump();
         if (player.lives <= 0)
         {
             EventManager.instance.Trigger("OnPlayerDead");

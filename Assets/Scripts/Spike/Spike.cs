@@ -13,6 +13,6 @@ public class Spike : MonoBehaviour, IDamageDealer
 
     public void Attack(IAttackable target)
     {
-        target.TakeDamage(1);
+        target.TakeDamage(3);
     }
 }

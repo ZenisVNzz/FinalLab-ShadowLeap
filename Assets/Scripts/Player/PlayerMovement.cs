@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     {
         rb = GetComponent<Rigidbody2D>();
         ghostTrail = GetComponentInChildren<GhostTrail>();
+        EventManager.instance.Register("OnPlayerDead", ZeroGravity);
     }
 
     public void Move(Vector2 input)
@@ -136,6 +137,12 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     public void ResetGravity()
     {
         rb.gravityScale = gravity;
+    }
+
+    private void ZeroGravity()
+    {
+        rb.gravityScale = 0;
+        rb.linearVelocityY = 0;
     }
 
     public Vector2 GetVelocity()
