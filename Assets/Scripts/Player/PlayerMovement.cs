@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     private void ZeroGravity()
     {
         rb.gravityScale = 0;
-        rb.linearVelocityY = 0;
+        rb.linearVelocity = Vector2.zero;
     }
 
     public Vector2 GetVelocity()

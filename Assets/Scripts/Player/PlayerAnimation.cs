@@ -11,44 +11,9 @@ public class PlayerAnimation : MonoBehaviour, IPlayerAnimator
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public void PlayIdle()
+    public void Play(PlayerAnimationState state)
     {
-        animator.Play("Player_Idle");
-    }
-
-    public void PlayMove()
-    {
-        animator.Play("Player_Move");
-    }
-
-    public void PlayDash()
-    {
-        animator.Play("Player_Dash");
-    }
-
-    public void PlayJump()
-    {
-        animator.Play("Player_Jump");
-    }
-
-    public void PlayFall()
-    {
-        animator.Play("Player_Fall");
-    }
-
-    public void PlayAttack()
-    {
-        animator.Play("Player_Attack");
-    }
-
-    public void PlayHurt()
-    {
-        animator.Play("Player_Hurt");
-    }
-
-    public void PlayDead()
-    {
-        animator.Play("Player_Death");
+        animator.Play(state.ToString());
     }
 
     public void Flip(bool x)

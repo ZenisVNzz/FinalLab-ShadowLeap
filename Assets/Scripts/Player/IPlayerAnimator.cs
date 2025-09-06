@@ -1,14 +1,19 @@
 using UnityEngine;
 
+public enum PlayerAnimationState
+{
+    Player_Idle,
+    Player_Move,
+    Player_Dash,
+    Player_Jump,
+    Player_Fall,
+    Player_Attack,
+    Player_Hurt,
+    Player_Death
+}
+
 public interface IPlayerAnimator
 {
-    void PlayIdle();
-    void PlayMove();
-    void PlayDash();
-    void PlayJump();
-    void PlayFall();
-    void PlayAttack();
-    void PlayHurt();
-    void PlayDead();
+    void Play(PlayerAnimationState state);
     void Flip(bool x);
 }

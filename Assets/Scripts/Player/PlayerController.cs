@@ -64,8 +64,7 @@ public class PlayerController : MonoBehaviour, IAttackable
 
     public void TakeDamage(int damage)
     {
-        player.lives -= damage;
-        playerAnimator.PlayHurt();
+        player.lives -= damage;      
         if (player.lives <= 0)
         {
             EventManager.instance.Trigger("OnPlayerDead");
@@ -73,13 +72,14 @@ public class PlayerController : MonoBehaviour, IAttackable
         }
         else
         {
+            playerAnimator.Play(PlayerAnimationState.Player_Hurt);
             Debug.Log("Player took damage. Remaining lives: " + player.lives);
         }
     }
 
     private void OnPlayerDeadHandler()
     {
-        playerAnimator.PlayDead();
+        playerAnimator.Play(PlayerAnimationState.Player_Death);
         inputActions.Player.Disable();
         this.enabled = false;
     }
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour, IAttackable
     private void Attack(InputAction.CallbackContext context)
     {      
         playerAttack.Attack();
-        playerAnimator.PlayAttack();
+        playerAnimator.Play(PlayerAnimationState.Player_Attack);
     }
 
     private void PlayerInputHandler()
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour, IAttackable
             playerAnimator.Flip(false);   
             if (groundDetector.IsGround() && !playerAttack.IsAttacking())
             {
-                playerAnimator.PlayMove();
+                playerAnimator.Play(PlayerAnimationState.Player_Move);
             }
         }
         else if (playerInput.x < 0)
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour, IAttackable
             playerAnimator.Flip(true);
             if (groundDetector.IsGround() && !playerAttack.IsAttacking())
             {
-                playerAnimator.PlayMove();
+                playerAnimator.Play(PlayerAnimationState.Player_Move);
             }
         }
     }
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour, IAttackable
     {
         if (playerMovement.GetVelocity().y > 0.1f && !playerAttack.IsAttacking())
         {
-            playerAnimator.PlayJump();
+            playerAnimator.Play(PlayerAnimationState.Player_Jump);
         }
     }       
 
@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour, IAttackable
     {
         if (playerMovement.GetVelocity().y < -0.1f && !playerAttack.IsAttacking())
         {
-            playerAnimator.PlayFall();
+            playerAnimator.Play(PlayerAnimationState.Player_Fall);
             playerMovement.FallAccelaration();
 
             playerMovement.JumpBufferCounter(inputActions.Player.Jump.triggered);
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour, IAttackable
     {
         if (playerInput.sqrMagnitude < 0.01f && groundDetector.IsGround() && !playerAttack.IsAttacking())
         {
-            playerAnimator.PlayIdle();
+            playerAnimator.Play(PlayerAnimationState.Player_Idle);
         }
     }
 }
