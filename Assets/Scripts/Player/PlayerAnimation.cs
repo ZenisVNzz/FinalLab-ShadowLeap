@@ -15,13 +15,16 @@ public class PlayerAnimation : MonoBehaviour, IPlayerAnimator
 
     public void Play(PlayerAnimationState state)
     {
-        if (currentState == state) return;
-
-        if (!IsAnimationFinished(currentState.ToString()) && IsNonLoop(currentState))
+        if (state != PlayerAnimationState.Player_Death)
         {
-            return;
-        }
+            if (currentState == state) return;
 
+            if (!IsAnimationFinished(currentState.ToString()) && IsNonLoop(currentState))
+            {
+                return;
+            }
+        }
+        
         animator.Play(state.ToString());
         currentState = state;
     }
