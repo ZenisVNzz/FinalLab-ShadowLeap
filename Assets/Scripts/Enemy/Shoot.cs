@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 public class Shoot : AbilityDependency, IAbility
 {
     private int bulletDamage = 1;
-    private float shootCooldown = 3f;
+    private float shootCooldown = 2f;
     private float lastShootTime = -Mathf.Infinity;
     private Transform player = GameObject.FindGameObjectWithTag("Player").transform;
     private Transform transform;

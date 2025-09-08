@@ -24,5 +24,6 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 
     protected virtual void OnDead()
     {
+        CameraShake.instance.ShakeCamera();
     }
 }

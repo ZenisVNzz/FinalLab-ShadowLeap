@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 10
+  speed: 11
   lifeTime: 8
 --- !u!61 &5649107532134500606
 BoxCollider2D:

@@ -26,6 +26,7 @@ public class Drone : Enemy
 
     protected override void OnDead()
     {
+        base.OnDead();
         animator.Play(DroneAnimationState.Drone_Dead);
         isDead = true;
         GetComponent<Collider2D>().enabled = false;

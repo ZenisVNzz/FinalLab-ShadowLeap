@@ -14,8 +14,7 @@ public class PlayerController : MonoBehaviour, IAttackable
 
     private Player player;
 
-    private SquashAndStretch squashAndStretch;
-    private CinemachineImpulseSource impulseSource;
+    private SquashAndStretch squashAndStretch;   
     private bool wasGrounded;
 
     private void Awake()
@@ -36,7 +35,6 @@ public class PlayerController : MonoBehaviour, IAttackable
         EventManager.instance.Register("OnPlayerDead", OnPlayerDeadHandler);    
 
         squashAndStretch = GetComponentInChildren<SquashAndStretch>();
-        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void OnEnable()
@@ -103,7 +101,7 @@ public class PlayerController : MonoBehaviour, IAttackable
         if (playerMovement.CanDash())
         {
             playerMovement.Dash(playerInput);
-            impulseSource.GenerateImpulse();
+            CameraShake.instance.ShakeCamera();
         }
     }
 
