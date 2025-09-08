@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -12,13 +13,15 @@ public class Shoot : AbilityDependency, IAbility
     private Transform transform;
     private GameObject bulletPrefab;
 
+    private Action animationCall;
     private PlayerDetector playerDetector;
 
-    public Shoot(Transform transform, int damage, float shootCooldown)
+    public Shoot(Transform transform, int damage, float shootCooldown, Action animationCallBack)
     {
         this.transform = transform;
         this.bulletDamage = damage;
         this.shootCooldown = shootCooldown;
+        this.animationCall = animationCallBack;
         this.bulletPrefab = Addressables.LoadAssetAsync<GameObject>("Bullet").WaitForCompletion();
     }
 
@@ -44,6 +47,7 @@ public class Shoot : AbilityDependency, IAbility
 
             Bullet bulletRuntime = bullet.GetComponent<Bullet>();
             bulletRuntime.Init(shootDir);
+            animationCall?.Invoke();
         }
     }
 }
