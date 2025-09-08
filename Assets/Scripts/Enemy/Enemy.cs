@@ -1,11 +1,14 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IAttackable
 {
     [SerializeField] protected int health = 1;
+    protected AbilityManager abilityManager = new AbilityManager();
     protected IAnimator animator;
 
-    protected void Start()
+    protected virtual void Start()
     {
         animator = GetComponent<IAnimator>();
     }
