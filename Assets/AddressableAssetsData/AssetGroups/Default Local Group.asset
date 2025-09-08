@@ -16,9 +16,10 @@ MonoBehaviour:
   m_GUID: f572213974c0f4140ac741cfc562b7af
   m_SerializeEntries:
   - m_GUID: 5d9f64ef339dbce48a765718ba974cfe
-    m_Address: Assets/Prefabs/Object/Bullet.prefab
+    m_Address: Bullet
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Object
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b280984a44e46164db5e2bd3eb5af2e8, type: 2}
