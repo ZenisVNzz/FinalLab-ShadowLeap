@@ -35,9 +35,15 @@ public class Shoot : AbilityDependency, IAbility
         lastShootTime = Time.time;
 
         if (playerDetector != null)
-        {
-            GameObject bullet = GameObject.Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            Debug.Log("Shoot bullet!");
+        {         
+            Vector2 shootDir = (player.position - transform.position).normalized;
+            float angle = Mathf.Atan2(shootDir.y, shootDir.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+            GameObject bullet = GameObject.Instantiate(bulletPrefab, transform.position, rotation);
+
+            Bullet bulletRuntime = bullet.GetComponent<Bullet>();
+            bulletRuntime.Init(shootDir);
         }
     }
 }
