@@ -124,6 +124,7 @@ public class PlayerController : MonoBehaviour, IAttackable
             if (groundDetector.IsGround() && !playerAttack.IsAttacking())
             {
                 playerAnimator.Play(PlayerAnimationState.Player_Move);
+                SFXManager.instance.PlaySFX("200001");
             }
         }
         else if (playerInput.x < 0)
@@ -132,6 +133,15 @@ public class PlayerController : MonoBehaviour, IAttackable
             if (groundDetector.IsGround() && !playerAttack.IsAttacking())
             {
                 playerAnimator.Play(PlayerAnimationState.Player_Move);
+                SFXManager.instance.PlaySFX("200001");
+            }
+        }
+        else
+        {
+            SFXManager.instance.StopSFX("200001");
+            if (!groundDetector.IsGround())
+            {
+                SFXManager.instance.StopSFX("200001");
             }
         }
     }

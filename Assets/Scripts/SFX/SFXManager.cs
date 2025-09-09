@@ -1,10 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 public class SFXManager : MonoBehaviour
 {
     public static SFXManager instance;
-    private AudioSource musicSource;
+
+    private AudioSource musicSource;  
+    private AudioSource sfxSource;       
+    private Dictionary<string, AudioSource> activeLoopSFX = new();
+
     private SFXList sfxList;
 
     private void Awake()
@@ -19,69 +24,73 @@ public class SFXManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         musicSource = gameObject.AddComponent<AudioSource>();
         musicSource.loop = true;
+
+        sfxSource = gameObject.AddComponent<AudioSource>();
 
         sfxList = Addressables.LoadAssetAsync<SFXList>("SFXList").WaitForCompletion();
     }
 
     public void PlaySFX(string id)
     {
-        AudioSource sfxSource = gameObject.AddComponent<AudioSource>();
-
         SFXClip clip = sfxList.SFXClips.Find(sfx => sfx.id == id && sfx.channel == SfxChannel.SFX);
-        if (clip != null)
+        if (clip == null)
         {
-            sfxSource.clip = clip.clip;
-            sfxSource.volume = clip.volume;
-            sfxSource.pitch = clip.pitch;
-            sfxSource.loop = clip.loop;
-            sfxSource.Play();
+            Debug.LogWarning($"SFX with ID {id} not found.");
+            return;
+        }
 
-            if (!clip.loop)
+        if (clip.loop)
+        {
+            if (!activeLoopSFX.ContainsKey(id))
             {
-                Destroy(sfxSource, clip.clip.length);
+                var loopSource = gameObject.AddComponent<AudioSource>();
+                loopSource.clip = clip.clip;
+                loopSource.volume = clip.volume;
+                loopSource.pitch = clip.pitch;
+                loopSource.loop = true;
+                loopSource.Play();
+                activeLoopSFX[id] = loopSource;
             }
         }
         else
         {
-            Debug.LogWarning($"SFX with ID {id} not found.");
+            sfxSource.volume = clip.volume;
+            sfxSource.pitch = clip.pitch;
+            sfxSource.PlayOneShot(clip.clip);
+        }
+    }
+
+    public void StopSFX(string id)
+    {
+        if (activeLoopSFX.TryGetValue(id, out var source))
+        {
+            source.Stop();
+            Destroy(source);
+            activeLoopSFX.Remove(id);
         }
     }
 
     public void PlayMusic(string id)
     {
         SFXClip clip = sfxList.SFXClips.Find(sfx => sfx.id == id && sfx.channel == SfxChannel.Music);
-        if (clip != null)
-        {
-            musicSource.clip = clip.clip;
-            musicSource.volume = clip.volume;
-            musicSource.pitch = clip.pitch;
-            musicSource.loop = clip.loop;
-            musicSource.Play();
-        }
-        else
+        if (clip == null)
         {
             Debug.LogWarning($"Music with ID {id} not found.");
+            return;
         }
+
+        musicSource.clip = clip.clip;
+        musicSource.volume = clip.volume;
+        musicSource.pitch = clip.pitch;
+        musicSource.loop = clip.loop;
+        musicSource.Play();
     }
 
     public void StopMusic()
     {
         musicSource.Stop();
-    }
-
-    public void StopSFX(string id)
-    {
-        AudioSource[] sources = GetComponents<AudioSource>();
-        foreach (AudioSource source in sources)
-        {
-            if (source.clip != null && source.clip.name == id && source != musicSource)
-            {
-                source.Stop();
-                Destroy(source);
-                break;
-            }
-        }
     }
 }
