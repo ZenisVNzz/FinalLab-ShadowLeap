@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour, IAttackable
         if (playerMovement.CanDash())
         {
             playerMovement.Dash(playerInput);
+            SFXManager.instance.PlaySFX("200002");
             CameraShake.instance.ShakeCamera();
         }
     }
@@ -139,10 +140,6 @@ public class PlayerController : MonoBehaviour, IAttackable
         else
         {
             SFXManager.instance.StopSFX("200001");
-            if (!groundDetector.IsGround())
-            {
-                SFXManager.instance.StopSFX("200001");
-            }
         }
     }
 
@@ -151,6 +148,7 @@ public class PlayerController : MonoBehaviour, IAttackable
         if (playerMovement.GetVelocity().y > 0.1f && !playerAttack.IsAttacking())
         {
             playerAnimator.Play(PlayerAnimationState.Player_Jump);
+            SFXManager.instance.StopSFX("200001");
         }
     }       
 
@@ -159,6 +157,7 @@ public class PlayerController : MonoBehaviour, IAttackable
         if (playerMovement.GetVelocity().y < -0.1f && !playerAttack.IsAttacking())
         {
             playerAnimator.Play(PlayerAnimationState.Player_Fall);
+            SFXManager.instance.StopSFX("200001");
             playerMovement.FallAccelaration();
 
             playerMovement.JumpBufferCounter(inputActions.Player.Jump.triggered);

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Audio;
 
 public class SFXManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class SFXManager : MonoBehaviour
     private Dictionary<string, AudioSource> activeLoopSFX = new();
 
     private SFXList sfxList;
+
+    [SerializeField] private AudioMixer audioMixer;
 
     private void Awake()
     {
@@ -50,6 +53,7 @@ public class SFXManager : MonoBehaviour
                 loopSource.clip = clip.clip;
                 loopSource.volume = clip.volume;
                 loopSource.pitch = clip.pitch;
+                loopSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("SFX")[0];
                 loopSource.loop = true;
                 loopSource.Play();
                 activeLoopSFX[id] = loopSource;
@@ -59,6 +63,7 @@ public class SFXManager : MonoBehaviour
         {
             sfxSource.volume = clip.volume;
             sfxSource.pitch = clip.pitch;
+            sfxSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("SFX")[0];
             sfxSource.PlayOneShot(clip.clip);
         }
     }
@@ -85,6 +90,7 @@ public class SFXManager : MonoBehaviour
         musicSource.clip = clip.clip;
         musicSource.volume = clip.volume;
         musicSource.pitch = clip.pitch;
+        musicSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("Music")[0];
         musicSource.loop = clip.loop;
         musicSource.Play();
     }

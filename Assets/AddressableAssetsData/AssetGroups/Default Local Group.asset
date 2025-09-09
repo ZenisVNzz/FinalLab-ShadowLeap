@@ -21,6 +21,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Object
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 677e468f48ee726459756c91f3ba1658
+    m_Address: VFXList
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7420110ffd9b3d845bab1783e61f8f06
+    m_Address: SFXList
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Data
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b280984a44e46164db5e2bd3eb5af2e8, type: 2}
   m_SchemaSet:
