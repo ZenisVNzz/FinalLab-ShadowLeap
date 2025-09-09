@@ -7,6 +7,7 @@ public class AttackHitHandler : MonoBehaviour
         if (collision.gameObject.GetComponent<IAttackable>() != null && collision.gameObject.tag != "Player")
         {
             collision.gameObject.GetComponent<IAttackable>().TakeDamage(1);
+            VFXManager.Instance.Initialize(100003, collision.transform.position);
         }
     }
 }
