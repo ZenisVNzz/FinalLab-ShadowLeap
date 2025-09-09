@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Drone : Enemy
 {
-    private bool isDead = false;
-
     protected override void Start()
     {
         base.Start();
@@ -28,8 +26,10 @@ public class Drone : Enemy
     {
         base.OnDead();
         animator.Play(DroneAnimationState.Drone_Dead);
-        isDead = true;
-        GetComponent<Collider2D>().enabled = false;
-        Destroy(gameObject, 1f);    
+    }
+
+    public override void SetActiveAgain()
+    {
+        base.SetActiveAgain();
     }
 }

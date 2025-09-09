@@ -8,7 +8,7 @@ public class Checkpoint : MonoBehaviour
         {
             Vector2 checkpointPosition = new Vector2(transform.position.x, transform.position.y);
             Debug.Log("Checkpoint reached at position: " + checkpointPosition);
-            collision.GetComponent<PlayerRespawn>().SetCheckpoint(checkpointPosition);
+            collision.GetComponent<OnPlayerDeadHandler>().SetCheckpoint(checkpointPosition);
         }
     }
 }

@@ -15,3 +15,4 @@ MonoBehaviour:
   vfxList:
   - {fileID: 11400000, guid: 19b6be99180dee5439a3796a4aec9a9a, type: 2}
   - {fileID: 11400000, guid: 5a2a4236263e5514d8d136a680dfcc9b, type: 2}
+  - {fileID: 11400000, guid: e0bc66a839e17004ba7fcb0199a9a037, type: 2}
