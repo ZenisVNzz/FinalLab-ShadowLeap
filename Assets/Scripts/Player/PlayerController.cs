@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour, IAttackable
     private SquashAndStretch squashAndStretch;   
     private bool wasGrounded;
 
+    //UI
+    [SerializeField] private HealthUI healthUI;
+
     private void Awake()
     {
         playerMovement = GetComponent<IPlayerMovement>();
@@ -41,6 +44,7 @@ public class PlayerController : MonoBehaviour, IAttackable
     {
         player = new Player(3, true);
         inputActions.Player.Enable();
+        healthUI.Initialize(player.lives);
     }
 
     private void FixedUpdate()
@@ -62,7 +66,8 @@ public class PlayerController : MonoBehaviour, IAttackable
 
     public void TakeDamage(int damage)
     {
-        player.lives -= damage;      
+        player.lives -= damage;
+        healthUI.UpdateHealth(player.lives);
         if (player.lives <= 0)
         {
             EventManager.instance.Trigger("OnPlayerDead");
