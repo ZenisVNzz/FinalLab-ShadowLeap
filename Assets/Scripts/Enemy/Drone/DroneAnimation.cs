@@ -4,7 +4,7 @@ public class DroneAnimation : MonoBehaviour, IAnimator, IDroneAnimator
 {
     private Animator _animator;
 
-    public void Start()
+    public void Awake()
     {
         _animator = GetComponent<Animator>();
     }
