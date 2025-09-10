@@ -23,6 +23,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
 
             Quaternion rot = Quaternion.FromToRotation(Vector3.right, attackDirection);
 
+            SFXManager.instance.PlaySFX("200004");
             VFXManager.Instance.Initialize(100002, spawnPos, rot);
         }      
     }

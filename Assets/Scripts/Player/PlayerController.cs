@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour, IAttackable
 
     public void TakeDamage(int damage)
     {
+        if (playerMovement.IsDashing()) return;
         player.lives -= damage;
         healthUI.UpdateHealth(player.lives);
         if (player.lives <= 0)
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour, IAttackable
         else
         {
             playerAnimator.Play(PlayerAnimationState.Player_Hurt);
+            SFXManager.instance.PlaySFX("200009");
             Debug.Log("Player took damage. Remaining lives: " + player.lives);
         }
     }
@@ -83,6 +85,7 @@ public class PlayerController : MonoBehaviour, IAttackable
     private void OnPlayerDeadHandler()
     {
         playerAnimator.Play(PlayerAnimationState.Player_Death);
+        SFXManager.instance.PlaySFX("200008");
         inputActions.Player.Disable();
         this.enabled = false;
     }
@@ -114,7 +117,7 @@ public class PlayerController : MonoBehaviour, IAttackable
     private void Attack(InputAction.CallbackContext context)
     {      
         playerAttack.Attack();
-        playerAnimator.Play(PlayerAnimationState.Player_Attack);
+        playerAnimator.Play(PlayerAnimationState.Player_Attack);      
     }
 
     private void PlayerInputHandler()
@@ -173,6 +176,7 @@ public class PlayerController : MonoBehaviour, IAttackable
                 squashAndStretch.OnLand();
                 Transform ground = transform.GetChild(1).transform;
                 VFXManager.Instance.Initialize(100001, new Vector2(ground.position.x, ground.position.y + 0.2f));
+                SFXManager.instance.PlaySFX("200003");
                 wasGrounded = true;
             }                 
         }

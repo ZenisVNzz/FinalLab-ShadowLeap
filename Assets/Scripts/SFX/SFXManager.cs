@@ -52,7 +52,7 @@ public class SFXManager : MonoBehaviour
                 var loopSource = gameObject.AddComponent<AudioSource>();
                 loopSource.clip = clip.clip;
                 loopSource.volume = clip.volume;
-                loopSource.pitch = clip.pitch;
+                loopSource.pitch = Random.Range(clip.pitch - 0.2f, clip.pitch + 0.2f);
                 loopSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("SFX")[0];
                 loopSource.loop = true;
                 loopSource.Play();
@@ -62,7 +62,7 @@ public class SFXManager : MonoBehaviour
         else
         {
             sfxSource.volume = clip.volume;
-            sfxSource.pitch = clip.pitch;
+            sfxSource.pitch = Random.Range(clip.pitch - 0.2f, clip.pitch + 0.2f);
             sfxSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("SFX")[0];
             sfxSource.PlayOneShot(clip.clip);
         }

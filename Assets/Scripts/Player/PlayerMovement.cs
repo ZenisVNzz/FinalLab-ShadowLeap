@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     {
         ResetGravity();
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        SFXManager.instance.PlaySFX("200005");
         jumpBufferCounter = 0;
     }
 
@@ -127,6 +128,11 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
                 ResetGravity();
             }
         }
+    }
+
+    public bool IsDashing()
+    {
+        return isDashing;
     }
 
     public void ResetDash()

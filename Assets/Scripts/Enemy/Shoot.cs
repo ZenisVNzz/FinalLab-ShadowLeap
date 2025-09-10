@@ -47,6 +47,7 @@ public class Shoot : AbilityDependency, IAbility
 
             Bullet bulletRuntime = bullet.GetComponent<Bullet>();
             bulletRuntime.Init(shootDir);
+            SFXManager.instance.PlaySFX("200007");
             animationCall?.Invoke();
         }
     }

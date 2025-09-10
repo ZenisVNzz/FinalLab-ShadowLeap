@@ -6,4 +6,5 @@ public interface IDashable
     void Dash(Vector2 direction);
     void ResetDash();
     void DashHandle();
+    bool IsDashing();
 }

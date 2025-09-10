@@ -15,3 +15,10 @@ MonoBehaviour:
   SFXClips:
   - {fileID: 11400000, guid: e8863d72a8a47e04eaf77ed2cdb52c18, type: 2}
   - {fileID: 11400000, guid: 40dc5cf4963d7a24d8263491f19493f0, type: 2}
+  - {fileID: 11400000, guid: a29eed033e6cc4c4d81fcab7f1ebacd9, type: 2}
+  - {fileID: 11400000, guid: 7a855c80aff75004db606eee44bf8538, type: 2}
+  - {fileID: 11400000, guid: 46a2abc9ad71c4644832a646ac68f610, type: 2}
+  - {fileID: 11400000, guid: 1bb9f051bd69ceb4db9f04b54463288e, type: 2}
+  - {fileID: 11400000, guid: 0157ff5becd086a40b98d9f15daf9c69, type: 2}
+  - {fileID: 11400000, guid: 9d60109244a349447aad9177e66284a9, type: 2}
+  - {fileID: 11400000, guid: 52cff121e7f95664ca5de36222c2e1b3, type: 2}

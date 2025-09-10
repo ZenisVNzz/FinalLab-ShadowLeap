@@ -26,6 +26,7 @@ public class Drone : Enemy
     {
         base.OnDead();
         animator.Play(DroneAnimationState.Drone_Dead);
+        SFXManager.instance.PlaySFX("200006");
     }
 
     public override void SetActiveAgain()
