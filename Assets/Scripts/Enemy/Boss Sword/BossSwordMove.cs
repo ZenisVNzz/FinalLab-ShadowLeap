@@ -8,7 +8,8 @@ public class BossSwordMove : IAbility, IMovable
     private Transform targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
     private SpriteRenderer spriteRenderer;
     private float speed;
-    private float stopDistance = 2.6f;
+    private float stopDistance = 2.2f;
+    private bool canMove = false;
     private BossSwordState bossSwordState;
     public bool isCloseToPLayer => Vector2.Distance(transform.position, targetPosition.position) <= stopDistance;
 
@@ -23,10 +24,13 @@ public class BossSwordMove : IAbility, IMovable
 
     public void Move(Vector2 targetPosition)
     {
-        Vector2 groundTarget = new Vector2(targetPosition.x, transform.position.y);
+        if (canMove)
+        {
+            Vector2 groundTarget = new Vector2(targetPosition.x, transform.position.y);
 
-        Vector2 direction = (groundTarget - (Vector2)transform.position).normalized;
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+            Vector2 direction = (groundTarget - (Vector2)transform.position).normalized;
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        }     
     }
 
     public void ProcessAbility()
@@ -52,5 +56,10 @@ public class BossSwordMove : IAbility, IMovable
             rb.linearVelocity = Vector2.zero;
             bossSwordState.ChangeState(BossSwordAnimationState.BossSword_Idle);
         }
+    }
+
+    public void SetMove(bool canMove)
+    {
+        this.canMove = canMove;
     }
 }

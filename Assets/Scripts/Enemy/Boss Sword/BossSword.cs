@@ -7,12 +7,16 @@ public class BossSword : Enemy
     protected override void Start()
     {
         base.Start();
-        health = 30;
+        health = 35;
         bossSwordState = new BossSwordState(animator);
         abilityManager.AddAbility(new PlayerDetector(transform, 15f), AbilityType.Passive);
-        abilityManager.AddAbility(new BossSwordMove(bossSwordState, GetComponent<SpriteRenderer>(), this.transform, GetComponent<Rigidbody2D>(), 5.5f), AbilityType.Passive);    
+        abilityManager.AddAbility(new BossSwordMove(bossSwordState, GetComponent<SpriteRenderer>(), this.transform, GetComponent<Rigidbody2D>(), 5.5f), AbilityType.Passive);
+        abilityManager.AddAbility(new BossSwordDash(GetComponent<Rigidbody2D>(), GetComponent<GhostTrail>(), this), AbilityType.Action);
+        abilityManager.AddAbility(new BossSwordDash2(GetComponent<Rigidbody2D>(), GetComponent<GhostTrail>(), this), AbilityType.Action);
         abilityManager.AddAbility(new BossSwordAttack1(bossSwordState, 1), AbilityType.Action);
-        abilityManager.AddAbility(new BossSwordAbilityHandler(), AbilityType.Passive);
+        abilityManager.AddAbility(new BossSwordAttack2(bossSwordState, 1), AbilityType.Action);
+        abilityManager.AddAbility(new BossSwordAttack4(bossSwordState, 1), AbilityType.Action);
+        abilityManager.AddAbility(new BossSwordAbilityHandler(this), AbilityType.Passive);
     }
 
     private void Update()
