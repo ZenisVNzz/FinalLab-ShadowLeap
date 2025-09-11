@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class BossSwordAbilityHandler : IAbility
+public class BossSwordAbilityHandler : AbilityDependency, IAbility
 {
-    private AbilityManager abilityManager;
+    private BossSwordMove bossSwordMove;
+    private BossSwordAttack1 bossSwordAttack1;
 
-    public void Initialize(AbilityManager manager)
+    public override void Initialize(AbilityManager abilityManager)
     {
-        abilityManager = manager;
+        base.Initialize(abilityManager);
+        bossSwordMove = abilityManager.GetAbility<BossSwordMove>();
+        bossSwordAttack1 = abilityManager.GetAbility<BossSwordAttack1>();
     }
 
     public void ProcessAbility()
     {
-
+        if (bossSwordMove.isCloseToPLayer)
+        {
+            bossSwordAttack1.ProcessAbility();
+        }
     }
 }

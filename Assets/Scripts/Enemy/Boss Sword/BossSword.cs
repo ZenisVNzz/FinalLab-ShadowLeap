@@ -10,7 +10,9 @@ public class BossSword : Enemy
         health = 30;
         bossSwordState = new BossSwordState(animator);
         abilityManager.AddAbility(new PlayerDetector(transform, 15f), AbilityType.Passive);
-        abilityManager.AddAbility(new BossSwordMove(bossSwordState, GetComponent<SpriteRenderer>(), this.transform, GetComponent<Rigidbody2D>(), 5.5f), AbilityType.Passive);
+        abilityManager.AddAbility(new BossSwordMove(bossSwordState, GetComponent<SpriteRenderer>(), this.transform, GetComponent<Rigidbody2D>(), 5.5f), AbilityType.Passive);    
+        abilityManager.AddAbility(new BossSwordAttack1(bossSwordState, 1), AbilityType.Action);
+        abilityManager.AddAbility(new BossSwordAbilityHandler(), AbilityType.Passive);
     }
 
     private void Update()

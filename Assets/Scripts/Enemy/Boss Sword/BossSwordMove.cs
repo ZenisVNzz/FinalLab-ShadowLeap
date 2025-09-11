@@ -10,6 +10,7 @@ public class BossSwordMove : IAbility, IMovable
     private float speed;
     private float stopDistance = 2.6f;
     private BossSwordState bossSwordState;
+    public bool isCloseToPLayer => Vector2.Distance(transform.position, targetPosition.position) <= stopDistance;
 
     public BossSwordMove(BossSwordState bossSwordState, SpriteRenderer spriteRenderer, Transform transform, Rigidbody2D rb, float speed)
     {
