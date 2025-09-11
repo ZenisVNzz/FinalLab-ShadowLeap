@@ -6,13 +6,15 @@ public class BossSwordMove : IAbility, IMovable
     private Rigidbody2D rb;
     private Transform transform;
     private Transform targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
+    private SpriteRenderer spriteRenderer;
     private float speed;
     private float stopDistance = 2.6f;
     private BossSwordState bossSwordState;
 
-    public BossSwordMove(BossSwordState bossSwordState, Transform transform, Rigidbody2D rb, float speed)
+    public BossSwordMove(BossSwordState bossSwordState, SpriteRenderer spriteRenderer, Transform transform, Rigidbody2D rb, float speed)
     {
         this.bossSwordState = bossSwordState;
+        this.spriteRenderer = spriteRenderer;
         this.transform = transform;
         this.rb = rb;
         this.speed = speed;
@@ -29,6 +31,15 @@ public class BossSwordMove : IAbility, IMovable
     public void ProcessAbility()
     {
         float distance = Vector2.Distance(transform.position, targetPosition.position);
+
+        if (targetPosition.position.x < transform.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
 
         if (distance > stopDistance)
         {
