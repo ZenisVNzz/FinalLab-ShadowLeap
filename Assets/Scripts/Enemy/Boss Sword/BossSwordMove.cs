@@ -1,0 +1,44 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class BossSwordMove : IAbility, IMovable
+{
+    private Rigidbody2D rb;
+    private Transform transform;
+    private Transform targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
+    private float speed;
+    private float stopDistance = 2.6f;
+    private BossSwordState bossSwordState;
+
+    public BossSwordMove(BossSwordState bossSwordState, Transform transform, Rigidbody2D rb, float speed)
+    {
+        this.bossSwordState = bossSwordState;
+        this.transform = transform;
+        this.rb = rb;
+        this.speed = speed;
+    }
+
+    public void Move(Vector2 targetPosition)
+    {
+        Vector2 groundTarget = new Vector2(targetPosition.x, transform.position.y);
+
+        Vector2 direction = (groundTarget - (Vector2)transform.position).normalized;
+        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+    }
+
+    public void ProcessAbility()
+    {
+        float distance = Vector2.Distance(transform.position, targetPosition.position);
+
+        if (distance > stopDistance)
+        {
+            Move(targetPosition.position);
+            bossSwordState.ChangeState(BossSwordAnimationState.BossSword_Run);
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
+            bossSwordState.ChangeState(BossSwordAnimationState.BossSword_Idle);
+        }
+    }
+}
