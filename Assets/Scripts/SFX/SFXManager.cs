@@ -34,6 +34,8 @@ public class SFXManager : MonoBehaviour
         sfxSource = gameObject.AddComponent<AudioSource>();
 
         sfxList = Addressables.LoadAssetAsync<SFXList>("SFXList").WaitForCompletion();
+
+        PlayMusic("200010");
     }
 
     public void PlaySFX(string id)
