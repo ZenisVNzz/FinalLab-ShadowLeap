@@ -47,6 +47,11 @@ public class PlayerController : MonoBehaviour, IAttackable
         healthUI.Initialize(player.lives);
     }
 
+    private void OnDestroy()
+    {
+        inputActions.Player.Disable();
+    }
+
     private void FixedUpdate()
     {
         playerMovement.Move(playerInput);      

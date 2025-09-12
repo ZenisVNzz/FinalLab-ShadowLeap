@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class BossSword : Enemy
 {
     public BossSwordState bossSwordState;
+    [SerializeField] VictoryUI victoryUI;
 
     protected override void Start()
     {
@@ -42,6 +44,7 @@ public class BossSword : Enemy
     protected override void OnDead()
     {
         base.OnDead();
+        StartCoroutine(Victory());
         bossSwordState.ChangeState(BossSwordAnimationState.BossSword_Dead);
         SFXManager.instance.PlaySFX("200008");
     }
@@ -50,4 +53,10 @@ public class BossSword : Enemy
     {
         base.SetActiveAgain();
     }
+
+    IEnumerator Victory()
+    {
+        yield return new WaitForSeconds(0.5f);
+        victoryUI.Active();
+    }    
 }
