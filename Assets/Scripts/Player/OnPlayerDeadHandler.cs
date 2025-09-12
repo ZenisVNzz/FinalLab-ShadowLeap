@@ -36,7 +36,7 @@ public class OnPlayerDeadHandler : MonoBehaviour
         checkpoint = newCheckpoint;
     }
 
-    private void Respawn()
+    public void Respawn()
     {
         StartCoroutine(RespawnCoroutine());
     }

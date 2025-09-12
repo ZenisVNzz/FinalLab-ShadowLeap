@@ -30,6 +30,7 @@ public class BossSwordDash : IAbility
 
         Vector2 directionToPlayer = ((Vector2)player.position - rb.position).normalized;
         Vector2 dashDirection = -directionToPlayer;
+        SFXManager.instance.PlaySFX("200002");
 
         float timer = dashDuration;
         while (timer > 0f)

@@ -29,7 +29,8 @@ public class BossSwordDash2 : IAbility
 
         Vector2 directionToPlayer = ((Vector2)player.position - rb.position).normalized;
 
-        Vector2 behindPlayer = (Vector2)player.position + (directionToPlayer * 1.5f); 
+        Vector2 behindPlayer = (Vector2)player.position + (directionToPlayer * 1.5f);
+        SFXManager.instance.PlaySFX("200002");
 
         float timer = dashDuration;
         while (timer > 0f)

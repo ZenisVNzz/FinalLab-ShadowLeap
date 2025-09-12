@@ -35,6 +35,7 @@ public class BossSword : Enemy
     {
         base.TakeDamage(damage);
         if (isDead) return;
+        SFXManager.instance.PlaySFX("200009");
         bossSwordState.ChangeState(BossSwordAnimationState.BossSword_Hurt);
     }
 
@@ -42,6 +43,7 @@ public class BossSword : Enemy
     {
         base.OnDead();
         bossSwordState.ChangeState(BossSwordAnimationState.BossSword_Dead);
+        SFXManager.instance.PlaySFX("200008");
     }
 
     public override void SetActiveAgain()
