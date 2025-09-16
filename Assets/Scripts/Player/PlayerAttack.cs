@@ -25,7 +25,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
 
             SFXManager.instance.PlaySFX("200004");
             VFXManager.Instance.Initialize(100002, spawnPos, rot);
-        }      
+        }
     }
 
     public bool IsAttacking()

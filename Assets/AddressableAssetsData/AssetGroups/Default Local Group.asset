@@ -33,6 +33,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - Data
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a855c80aff75004db606eee44bf8538
+    m_Address: Assets/Data/SFX/Player_Attack.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b280984a44e46164db5e2bd3eb5af2e8, type: 2}
   m_SchemaSet:

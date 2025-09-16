@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: f572213974c0f4140ac741cfc562b7af
   m_currentHash:
     serializedVersion: 2
-    Hash: 04626f243d832c09e8757691fe75068a
+    Hash: c23556639660fcfd07779b9af8a8032e
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -50,10 +50,10 @@ MonoBehaviour:
   m_CheckForContentUpdateRestrictionsOption: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
-    m_Id: 
+    m_Id: af2ea94ce18641248ae0c9f161bf249f
   m_RemoteCatalogLoadPath:
-    m_Id: 
-  m_ContentStateBuildPathProfileVariableName: 
+    m_Id: 8f9f12a84a2a7dc4886d754d368f0b5d
+  m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
       m_ProfileName: Default
       m_Values:
       - m_Id: 54326ebbbe073084e93d86b63f8c5cc4
-        m_Value: <undefined>
+        m_Value: 'https://fir-54367.web.app/[BuildTarget]'
       - m_Id: 8f9f12a84a2a7dc4886d754d368f0b5d
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: 9a1b2309e7784224b811839be5916456
