@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Audio;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class SFXManager : MonoBehaviour
 {
@@ -33,7 +34,14 @@ public class SFXManager : MonoBehaviour
 
         sfxSource = gameObject.AddComponent<AudioSource>();
 
-        sfxList = Addressables.LoadAssetAsync<SFXList>("SFXList").WaitForCompletion();
+        var handle = Addressables.LoadAssetAsync<SFXList>("SFXList");
+        handle.Completed += op =>
+        {
+            if (op.Status == AsyncOperationStatus.Succeeded)
+            {
+                sfxList = op.Result;
+            }
+        };
 
         PlayMusic("200010");
     }

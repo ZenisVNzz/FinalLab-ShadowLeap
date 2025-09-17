@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Shoot : AbilityDependency, IAbility
 {
@@ -22,7 +23,15 @@ public class Shoot : AbilityDependency, IAbility
         this.bulletDamage = damage;
         this.shootCooldown = shootCooldown;
         this.animationCall = animationCallBack;
-        this.bulletPrefab = Addressables.LoadAssetAsync<GameObject>("Bullet").WaitForCompletion();
+
+        var handle = Addressables.LoadAssetAsync<GameObject>("Bullet");
+        handle.Completed += op =>
+        {
+            if (op.Status == AsyncOperationStatus.Succeeded)
+            {
+                this.bulletPrefab = op.Result;
+            }
+        };
     }
 
     public override void Initialize(AbilityManager abilityManager)

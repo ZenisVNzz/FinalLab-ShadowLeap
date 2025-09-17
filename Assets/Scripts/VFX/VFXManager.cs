@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UIElements;
 
 public class VFXManager : MonoBehaviour
 {
     public static VFXManager Instance;
-    [SerializeField] private VFXList VFXList;
+    private VFXList VFXList;
     private Dictionary<int, GameObject> activeVFX = new Dictionary<int, GameObject>();
 
     private void Awake()
@@ -18,6 +20,15 @@ public class VFXManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        var handle = Addressables.LoadAssetAsync<VFXList>("VFXList");
+        handle.Completed += op =>
+        {
+            if (op.Status == AsyncOperationStatus.Succeeded)
+            {
+                VFXList = op.Result;
+            }
+        };
     }
 
     public void Initialize(int id, Vector2 position)
