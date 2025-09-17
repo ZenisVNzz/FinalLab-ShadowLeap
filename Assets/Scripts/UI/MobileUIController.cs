@@ -8,6 +8,17 @@ public class MobileUIController : MonoBehaviour
     {
 #if UNITY_ANDROID
         MobileUI.SetActive(true);
+#elif UNITY_WEBGL
+        Debug.Log(SystemInfo.operatingSystem);
+
+        if (SystemInfo.operatingSystem.Contains("Android"))
+        {
+            MobileUI.SetActive(true);
+        }
+        else if (SystemInfo.operatingSystem.Contains("iOS"))
+        {
+            MobileUI.SetActive(true);
+        }
 #endif
     }
 }
