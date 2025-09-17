@@ -7,11 +7,10 @@ public class PlatformCameraController : MonoBehaviour
 
     private void Start()
     {
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_IOS
         staticCam.SetActive(false);
         followCam.SetActive(true);
 #elif UNITY_WEBGL
-        Debug.Log(SystemInfo.operatingSystem);
 
         if (SystemInfo.operatingSystem.Contains("Android"))
         {

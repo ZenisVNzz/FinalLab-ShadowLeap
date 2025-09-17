@@ -1,4 +1,5 @@
 using Unity.Cinemachine;
+using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -122,7 +123,10 @@ public class PlayerController : MonoBehaviour, IAttackable
     private void Attack(InputAction.CallbackContext context)
     {      
         playerAttack.Attack();
-        playerAnimator.Play(PlayerAnimationState.Player_Attack);      
+        if (playerAttack.IsAttacking())
+        {
+            playerAnimator.Play(PlayerAnimationState.Player_Attack);
+        }         
     }
 
     private void PlayerInputHandler()
