@@ -40,10 +40,9 @@ public class SFXManager : MonoBehaviour
             if (op.Status == AsyncOperationStatus.Succeeded)
             {
                 sfxList = op.Result;
+                PlayMusic("200010");
             }
-        };
-
-        PlayMusic("200010");
+        };    
     }
 
     public void PlaySFX(string id)
